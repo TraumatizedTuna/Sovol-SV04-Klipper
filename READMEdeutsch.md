@@ -10,7 +10,7 @@ Spiegel- und Kopiermodi von Klipper funktioniert.
 [![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)](https://www.paypal.com/donate/?hosted_button_id=L85ULXXQKALP6)
 
 # Neu
-Hier klicken für  Discord https://discord.gg/22VQXyuq
+Hier klicken für [Discord](https://discord.gg/xBbKEvxRNq)
 
 # Einleitung
 

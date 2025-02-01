@@ -13,7 +13,7 @@ Klipper's Mirror and Copy modes.
 # _Für die deutsche Anleitung wählt bitte READMEdeutsch.md_
 
 # New
-Click here for the Discord https://discord.gg/22VQXyuq
+Click here for the [Discord](https://discord.gg/xBbKEvxRNq)
 
 # Introduction
 
