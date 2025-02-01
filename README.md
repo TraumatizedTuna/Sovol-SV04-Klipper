@@ -1,7 +1,8 @@
-Pleas use the newest release for download "[Release](https://github.com/Bully85/Sovol-SV04-Klipper/releases)"
+Please use the newest release for download "[Release](https://github.com/Bully85/Sovol-SV04-Klipper/releases)"
 
 # Sovol-SV04-Klipper
-This repository contains all the necessary configuration files for the SV04 to work with Klipper's Mirror and Copy modes, including images and descriptions.
+This repository contains all the necessary configuration files for the SV04 to work with 
+Klipper's Mirror and Copy modes.
 
 ![KlipperSV04](docs/img/sv04klipper.png)
 
@@ -11,23 +12,34 @@ This repository contains all the necessary configuration files for the SV04 to w
 
 # _Für die deutsche Anleitung wählt bitte READMEdeutsch.md_
 
-# new
+# New
 Click here for the Discord https://discord.gg/22VQXyuq
-# update
-Attention, the configs have changed with the new update. Please re-insert IDEX_mode.cfg, macros.cfg and Start-End-Macro.cfg. If the display is needed, these are in the config/SV04-with-display folder. Otherwise, if the original klipper is installed, config/SV04-works-with-orign-klipper can also be used but without the orign display
 
-Change the Startcode in the Slicer [Cura](Cura Profile/Startcode.md) [Prusa_Slicer](Prusaslicer Profile/Startcode.md)
 # Introduction
-
-Different configs are required for the STM and GD versions of the printer.
-Both are included in the "printer.cfg" file and you just need to uncomment the correct one.
-You can verify whether your chip is STM or GD by either opening your electric box and checking manually, or there is an error message with the z-Tilt.
 
 This guide will help you set up your SV04 with Klipper, including the COPY and MIRROR modes.
 
+Different configs are required for the STM and GD versions of the printer.
+Both are included in the "printer.cfg" file and you just need to uncomment the correct one.
+You can verify whether your chip is STM or GD by either opening your electric box, or you 
+just activate one config, if it is the wrong one you will get an error message with the 
+Z-Tilt.
+
+# update
+Attention, the configs have changed with the new update. Please re-insert IDEX_mode.cfg, 
+macros.cfg and Start-End-Macro.cfg. 
+If the display is needed, you can find the config in 
+[config/SV04-with-display](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/SV04-with-display)
+
+If you use the original Klipper version with does not support the orignial Display, you 
+can find the configuration files here: 
+[config/SV04-works-with-orign-klipper](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/Sv04-works-with%20origin-klipper)
+
+Change the Startcode in the Slicers 
+* [Cura](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/Cura%20Profile) 
+* [Prusa_Slicer](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/Prusaslicer%20Profile)
 
 # In Progress
-
 Cura 5.3 is currently not supported, but we are working on it.
 
 
@@ -42,9 +54,7 @@ Cura 5.3 is currently not supported, but we are working on it.
 - Display Functionality
 - And much more
 
-
 # Requirements
-
 - Raspberry Pi 3 or newer with WiFi
     - Pi Zero won't work 
     - Pi 2 may or may not work, not recommended
@@ -61,9 +71,44 @@ Cura 5.3 is currently not supported, but we are working on it.
 - MicroSD Card for the Raspi (min 8GB, the complete install is ~5.5GB)
 - SD Card to flash the SV04 (max 8GB, formatted in Fat32 4096)
 
+# Installation
 
-# Installation via pre-made OS image
+### Installation on a new Mainsail OS 
 
+Using the Raspi Imager, install Mainsail OS from 'Other specific-purpose OS' -> 
+'3D printing' -> 'Mainsail OS'.
+
+Follow the [Mainsail](https://docs-os.mainsail.xyz) installation steps.
+
+The printer.cfg can be found  
+[hre](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/Sv04-works-with%20origin-klipper). 
+Before you upload the file you must do some setups. Depending of yoor mainboard enable
+the right Z-Stepper section. 
+
+The file upload can be made easily with the Klupper web surface.  
+
+Beside printer.cfg you must upload as well the following files into the config directory. 
+* macros.cfg
+* IDEX_mode.cfg
+* misc.cfg
+* Start_End_Macro.cfg
+
+Next you would need to replace the software of your printer mainboar. . 
+
+Copy the file firmware.bin on a memory card which can be inserted itou your printer. 
+* switch of the printer
+* insert the memory card
+* switch on the printer. The Display will show the regular progress bar. The progress bar
+will not show any progress, this is normal. 
+# wait two minutes and switch of the printer.  
+* if the file on the memory card has been renamed ba the printer to firmware.CUR, all is 
+ok, the firmware has been loaded correctly. 
+
+Connect the Raspberry wirh your printer. After a Klupper restart you're ready to go. 
+
+## configuration alternatives (most probably with older SW versions)
+
+## Installation via pre-made OS image
 The operating system for the Raspberry Pi can be found in the "[image Raspberry PI 3_4](https://drive.google.com/drive/folders/1rZepxzwUR5QTXRXcv5EBYin_gFiMcKVD)" directory. 
 This should be installed onto the MicroSD card using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/). 
 Make sure to adjust your WiFi settings before writing the image (you can find them by clicking on the cog wheel in the bottom right corner). 
@@ -74,13 +119,13 @@ The files from the "config" directory should now be transferred to the Raspberry
 - the IP can be found in your router
 
 
-# Installation on an Existing OS
+## Installation on an new OS
 
-## Without Kiauh
+### Without Kiauh
 
 Coming soon.
 
-## If you use Kiauh
+### If you use Kiauh
 Follow the [Kiauh](https://github.com/th33xitus/kiauh) instructions first, then come back.
 
 - Log in to the Raspberry Pi [via SSH](#using-ssh) and enter the following command:
@@ -106,16 +151,6 @@ https://github.com/Bully85/klipper
 - Then confirm everything with [y].
 
 Exit SSH
-
-
-# Installation on a new OS 
-
-Using the Raspi Imager, install Mainsail OS from 'Other specific-purpose OS' -> '3D printing' -> 'Mainsail OS'.
-Then boot your Raspi, connect via SSH, and install [Kiauh](https://github.com/th33xitus/kiauh). 
-Now follow the [instructions above](#if-you-use-kiauh) to overwrite the default Klipper install with this one.
-Once done connect via SFTP/SCP, and transfer all the files from this repo's 'config' folder into 'printer_data/config/'.
-Reboot the Raspi for good measure, and you're done.
-
 
 # Using SSH
 
