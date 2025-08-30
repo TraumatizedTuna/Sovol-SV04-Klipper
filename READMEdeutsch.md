@@ -1,5 +1,6 @@
 # Sovol-SV04-Klipper
-Dieses Repository enthält alle notwendigen Konfigurationsdateien, damit der SV04 mit den Spiegel- und Kopiermodi von Klipper funktioniert, einschließlich Bilder und Beschreibungen.
+Dieses Repository enthält alle notwendigen Konfigurationsdateien, damit der SV04 mit den 
+Spiegel- und Kopiermodi von Klipper funktioniert.
 
 ![KlipperSV04](docs/img/sv04klipper.png)
 
@@ -8,24 +9,39 @@ Dieses Repository enthält alle notwendigen Konfigurationsdateien, damit der SV0
 
 [![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)](https://www.paypal.com/donate/?hosted_button_id=L85ULXXQKALP6)
 
+# Neu
+Hier klicken für [Discord](https://discord.gg/xBbKEvxRNq)
 
 # Einleitung
 
-Als erstes solltet Ihr überprüfen, welchen Chip Ihr habt. Entweder Ihr öffnet den Elekronikkasten und schaut was auf eurem Chip steht oder es kommt eine Fehlermeldung beim z-Tilt.
+Diese Anleitung beschreibt, wie du deinen SV04, inklusive der COPY und MIRROR Modi, mit 
+Klipper ausrüsten kannst.
 
-Diese Anleitung beschreibt, wie ihr euren SV04, inklusive der COPY und MIRROR modi, Klippern könnt.
+Der SV04 wurde mit verschiedenen Mainboards ausgeliefert, entweder mit einem STM32 oder 
+einem Giga Device GD32. Für beide Boards sind die Konfigurationen in der Datei 
+"printer.cfg", du musst nur den richtigen Abschnitt aktivieren. 
+Als erstes solltet du überprüfen, welchen Chip du hast. Entweder du öffnest die 
+Elekronikbox und schaut was auf deinem Chip steht oder du aktiviert eine Konfiguration, 
+wenn es die falsche ist, gibt es eine Fehlermeldung beim z-Tilt.
 
-# update
-Achtung, die configs haben sich mit dem neuen Update geändert. Bitte fügen Sie IDEX_mode.cfg, Macros.cfg und Start-End-Macro.cfg erneut ein. Wenn das Display benötigt wird, befinden sich diese im Ordner config/SV04-with-display. Andernfalls kann bei installiertem Original-Klipper auch config/SV04-works-with-orign-klipper verwendet werden, jedoch ohne das original Display
+# Update
+Achtung, die Configs haben sich mit dem neuen Update geändert. Bitte füge IDEX_mode.cfg, 
+Macros.cfg und Start-End-Macro.cfg erneut ein. 
+Wenn das Display benötigt wird, befinden sich diese im Ordner 
+[config/SV04-with-display](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/SV04-with-display)
 
-Wechsel des Startcode im Slicer [Cura](Cura Profile/Startcode.md) [Prusa_Slicer](Prusaslicer Profile/Startcode.md)
+Andernfalls kann bei installiertem Original-Klipper auch 
+[config/SV04-works-with-orign-klipper](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/Sv04-works-with%20origin-klipper)
+verwendet werden, jedoch ohne das Original-Display
 
-solltet ihr neu installieren befolgt weiter diese Anleitung
+Wechsle des Startcode im Slicer 
+* [Cura](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/Cura%20Profile) 
+* [Prusa_Slicer](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/Prusaslicer%20Profile)
+
 # In Arbeit..
 Momentan wird Cura 5.3 nicht untersützt ! wir arbeiten aber dran... 
 
-
-# Was geht alles?!!!
+# Was funktioniert alles?!!!
 
 - Copy-Modus (unterstützt verschiedene Temperaturen, aber nicht die firstlayer Einstellungen für den rechten Extruder)
 - Mirror-Modus (unterstützt verschiedene Temperaturen, aber nicht die firstlayer Einstellungen für den rechten Extruder)
@@ -36,9 +52,10 @@ Momentan wird Cura 5.3 nicht untersützt ! wir arbeiten aber dran...
 - Das Display geht
 - uvm.
 
-
 # Benötigt
 - Raspberry Pi mit W-Lan
+    - Pi Zero funktioniert nicht
+    - Pi2 kann funktionieren, oder auch nicht, deshalb nicht empfohlen
 - Optional aber empfohlen: Original 7“ Touchscreen
 - Optional: Kamera
 - SSH; Zum Beispiel:
@@ -52,8 +69,44 @@ Momentan wird Cura 5.3 nicht untersützt ! wir arbeiten aber dran...
 - MicroSD-Karte für den Raspi (mindestens 8GB, die komplette Installation beträgt etwa 5,5GB)
 - SD-Karte zum Flashen des SV04 (maximal 8GB, formatiert in Fat32 4096)
 
-
 # Installation
+
+## Installation auf einem neuen Mainsail OS
+
+Installiere mit dem Raspi Imager das Mainsail OS aus 'Other specific-purpose OS' -> 
+'3D printing' -> 'Mainsail OS'.
+
+Folge den Installationsschritten von  [Mainsail](https://docs-os.mainsail.xyz)
+
+Die printer.cfg Datei findest du 
+[hier](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/Sv04-works-with%20origin-klipper). 
+Bevor die Datei hochgeladen wird, muss diese erst bearbeitet werden. Abhängig von deinem 
+Mainboard müssen im Abschnitt "#   Z Stepper Settings" die richtigen Zeilen aktiviert werden. 
+
+Das Hochladen kann einfach über die Klipper-Weboberfläche passieren. 
+Neben printer.cfg müssen die folgenden Dateien auch in config Verzeichnis hochgeladen werden. 
+* macros.cfg
+* IDEX_mode.cfg
+* misc.cfg
+* Start_End_Macro.cfg
+
+Als nächstes muss die Software auf dem Printer Mainboard ersetzt werden. 
+
+Dazu die Datei firmware.bin auf eine Speicherkarte kopieren welche im Drucker eingesteckt 
+werden kann. 
+* den Drucker ausschalten
+* die Speicherkarte einstecken
+* den Drucker einschalten. Das Display zeigt den normalen Fortschrittsbalken, der aber 
+nicht bewegt. Zwei Minuten warten, den Drucker wieder ausschalten. 
+* Wenn die Datei auf der Specherkarte in firmware.CUR umbenannt worden ist, ist das das 
+Zeichen dass die Firmware korrekt geladen wurde. 
+
+Jetzt kann der Raspberry mit dem Drucker verbunden werden. Nach einem Restart von Klipper 
+sollte alles funktionieren. 
+
+## Alternative Installationsmöglichkeiten (mit älteren Versionen)
+
+### Installation mit einem bereits vorkonfigurierten Betriebssystem-Image
 
 Das Betriebssystem für den Raspberry findet ihr im Verzeichniss "[image Raspberry PI 3_4](https://drive.google.com/drive/folders/1rZepxzwUR5QTXRXcv5EBYin_gFiMcKVD)". 
 Dieses wird mit Hilfe des [Raspberry Pi Imagers](https://www.raspberrypi.com/software/) auf die MicroSD-Karte gespielt. 
@@ -61,16 +114,17 @@ Achtet darauf gleich eure Wifi-Einstellungen anzupassen (diese findet ihr wenn i
 
 Die firmware.bin im Verzeichnis "Firmware bin" kommt auf die (große)SD-Karte und wird mit ausgestecktem original Display (wird vorerst nicht mehr benötigt, da es nicht mehr funktioniert) auf den Drucker geflasht. 
 Die Dateien aus dem "config" verzeichniss werden dann, [wie unten beschrieben](#dateiübertragung) oder direkt im Mainsail Interface, auf den Raspberry übertragen. Sobald der Pi gestartet ist, kann das Interface per IP oder Hostname erreicht werden.
+- der Hostname kann bei den WiFi Settings im Pi Imager eingestellt werden
+- the IP kann via Router Oberfläche herausgefunden werden
+- 
 
+### Installation auf einem neuen OS
 
-# Installation auf einem bestehendem OS
+#### Ohne Kiauh
 
-# Ohne Kiauh
+Beschreibung folgt .....
 
-beschreibung folgt .....
-
-
-# Solltet ihr Kiauh nutzen
+#### Solltet ihr Kiauh nutzen
 Folgt zuerst den [Kiauh](https://github.com/th33xitus/kiauh) Anweisungen und kommt dann zurück.
 
 - Meldet euch per ssh beim Raspi an und gebt folgenden befehl ein:
@@ -97,18 +151,7 @@ https://github.com/Bully85/klipper
 
 Fertig mit SSH
 
-
-# Installation auf einem neuen OS
-
-Installiert mit dem Raspi Imager das Mainsail OS aus 'Other specific-purpose OS' -> '3D printing' -> 'Mainsail OS'.
-Startet dann euren Raspi, verbindet euch über SSH und installiert [Kiauh](https://github.com/th33xitus/kiauh).
-Folgt den [vorherigen Schritten](#solltet-ihr-kiauh-nutzen), um die Standard-Klipper-Installation durch diese zu ersetzen.
-Sobald ihr fertig seid, verbindet euch über SFTP/SCP und übertragt alle Dateien aus dem 'config'-Ordner dieses Repos in 'printer_data/config/'.
-Startet den Raspi zur Sicherheit neu, und ihr seid fertig.
-
-
 # Benutzung von SSH 
-
 Ihr könnt SSH über eine [grafische Oberfläche](#benötigt) verwenden, oder über das Terminal.
 Wenn ihr Putty benutzt, folgt deren Anweisungen.
 Das Terminal ist schon installiert und normalerweise schneller.
