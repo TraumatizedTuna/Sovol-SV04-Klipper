@@ -31,7 +31,7 @@ macros.cfg and Start-End-Macro.cfg.
 If the display is needed, you can find the config in 
 [config/SV04-with-display](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/SV04-with-display)
 
-If you use the original Klipper version with does not support the orignial Display, you 
+If you use the original Klipper version which does not support the orignial Display, you 
 can find the configuration files here: 
 [config/SV04-works-with-orign-klipper](https://github.com/Bully85/Sovol-SV04-Klipper/tree/main/config/Sv04-works-with%20origin-klipper)
 
